@@ -128,20 +128,21 @@ metadata:
   name: nginx-component
 spec:
   template:
-    containers:
-      - name: nginx
-        package: hub.x.com/nginx:v1.9
-        sharing_dir: conf.d                   # 供依赖方写入配置文件
-        commands:
-          start: sbin/nginx
-          stop: sbin/nginx -s stop
-          reload: sbin/nginx -s reload
-          restart: sbin/nginx -s reopen
-        ports:
-          - name: http
-            container_port: 80
-          - name: https
-            container_port: 443
+  	spec:
+      containers:
+        - name: nginx
+          package: hub.x.com/nginx:v1.9
+          sharing_dir: conf.d                   # 供依赖方写入配置文件
+          commands:
+            start: sbin/nginx
+            stop: sbin/nginx -s stop
+            reload: sbin/nginx -s reload
+            restart: sbin/nginx -s reopen
+          ports:
+            - name: http
+              container_port: 80
+            - name: https
+              container_port: 443
 
 ---
 
@@ -151,14 +152,15 @@ metadata:
   name: fpm-component
 spec:
   template:
-    containers:
-      - name: fpm
-        package: hub.x.com/fpm:v7.0
-        commands:
-          start: sbin/fpm
-        ports:
-          - name: fpm-port
-            container_port: 9000
+  	spec:
+      containers:
+        - name: fpm
+          package: hub.x.com/fpm:v7.0
+          commands:
+            start: sbin/fpm
+          ports:
+            - name: fpm-port
+              container_port: 9000
 
 ---
 
@@ -173,7 +175,7 @@ spec:
       required_components:
         - name: nginx-component
           config:
-            passport.x.com.conf: |              # 该配置将会写入组件【nginx-component】的sharing_dir
+            passport.x.com.conf: | # 该配置将会写入组件【nginx-component】的sharing_dir
               server {
                   listen 80;
                   server_name passport.x.com
