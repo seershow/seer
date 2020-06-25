@@ -117,6 +117,8 @@ spec:
 
 
 
+**Component配置**
+
 为了解决多个服务共用同一个组件的需求，如：PHP Web服务，请求 --> 【Nginx】--> 【FPM】 --> 【PHP】，多个PHP Web服务会共用同样的Nginx和FPM进程。
 
 我们引入Component的概念，Component不能单独部署运行，如果有其它Pod依赖它，就会自动部署。
