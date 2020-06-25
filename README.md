@@ -130,7 +130,7 @@ metadata:
   name: nginx-component
 spec:
   template:
-  	spec:
+    spec:
       containers:
         - name: nginx
           package: hub.x.com/nginx:v1.9
@@ -154,7 +154,7 @@ metadata:
   name: fpm-component
 spec:
   template:
-  	spec:
+    spec:
       containers:
         - name: fpm
           package: hub.x.com/fpm:v7.0
